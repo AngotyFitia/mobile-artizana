@@ -2,24 +2,28 @@
   <ion-toolbar style="--background: #ffffff; padding: 0;">
     <ion-grid>
       <ion-row class="ion-align-items-center ion-justify-content-around">
+        
         <ion-col class="ion-text-center">
-          <ion-button fill="clear" routerLink="/home">
-            <ion-icon slot="icon-only" name="bag-outline" style="color: #000;"></ion-icon>
-            <ion-label style="display: block; font-size: 12px; color: #000;">Fivarotana</ion-label>
+          <ion-button fill="clear" routerLink="/home/accueil" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+            <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+            <ion-label>Ireo vokatra</ion-label>
           </ion-button>
         </ion-col>
+        
         <ion-col class="ion-text-center">
-          <ion-button fill="clear" routerLink="/profile">
-            <ion-icon slot="icon-only" name="person-outline" style="color: #000;"></ion-icon>
-            <ion-label style="display: block; font-size: 12px; color: #000;">Kaonty</ion-label>
+          <ion-button fill="clear" routerLink="/home/profil" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+            <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+            <ion-label>Kaonty</ion-label>
           </ion-button>
         </ion-col>
+        
         <ion-col class="ion-text-center">
-          <ion-button fill="clear" routerLink="/search">
-            <ion-icon slot="icon-only" name="search" style="color: #000;"></ion-icon>
-            <ion-label style="display: block; font-size: 12px; color: #000;">Hitady zavatra</ion-label>
+          <ion-button fill="clear" routerLink="/search" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+            <ion-icon slot="icon-only" name="search"></ion-icon>
+            <ion-label>Hitady zavatra</ion-label>
           </ion-button>
         </ion-col>
+
       </ion-row>
     </ion-grid>
   </ion-toolbar>

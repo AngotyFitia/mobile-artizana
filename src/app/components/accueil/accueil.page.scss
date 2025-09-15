@@ -1,0 +1,202 @@
+:host {
+  --background: #fff; /* blanc pur partout */
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* jolie police moderne */
+  color: #333; /* texte sombre */
+}
+
+ion-content.layout-container {
+  --background: #ffffff; /* fond blanc forcé pour tout le contenu */
+  background-color: #ffffff;
+  color: #333; /* texte lisible */
+}
+
+.layout-container {
+  height: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-top: 200px;
+}
+
+.main-content {
+  display: flex;
+  height: 100%;
+  gap: 16px;
+  background-color: #fff;
+  margin-top: 100px;
+}
+
+/* Sidebar (filtre) */
+.sidebar {
+  width: 160px;
+  background: #ffff !important; 
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(196, 128, 2, 0.15); /* ombre douce ocre */
+  overflow-y: auto;
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+
+/* Override des ion-item dans la sidebar */
+.sidebar ion-item {
+  --background: transparent;
+  --background-activated: #ffffff; /* fond ocre au clic */
+  --background-focused: #ffff;
+  --background-hover: #ffff;
+  --color: #c5c5c5;                 /* texte ocre */
+  --color-activated: #000000;          /* texte blanc quand activé */
+  --color-focused: #000000;
+  --color-hover: #000;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 4px;
+}
+
+/* Styles pour l'item sélectionné */
+.sidebar ion-item.selected,
+.sidebar ion-item[aria-selected="true"] {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* S'assurer que le texte dans ion-label est aussi affecté */
+.sidebar ion-item,
+.sidebar ion-item ion-label {
+  color: #b1a2a0;
+}
+
+.sidebar ion-item.selected,
+.sidebar ion-item.selected ion-label,
+.sidebar ion-item[aria-selected="true"],
+.sidebar ion-item[aria-selected="true"] ion-label {
+  color: #000000 !important;
+}
+
+ion-item {
+  --border-color: transparent !important;
+  --inner-border-width: 0 !important;
+  border: none !important;
+}
+
+/* Partie grille des produits */
+.products-grid {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #fff;
+  color: black;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(196, 128, 2, 0.1);
+  padding: 8px;
+}
+
+/* Reset ion-grid */
+ion-grid {
+  margin: 0;
+}
+
+ion-col {
+  padding: 8px;
+}
+
+ion-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(196, 128, 2, 0.1);
+  transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+ion-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(196, 128, 2, 0.25);
+}
+
+ion-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  height: 150px;
+}
+
+ion-card-header {
+  text-align: center;
+  padding: 12px 8px;
+  background: #fff;
+  color: #333;
+}
+
+ion-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: black;
+}
+
+ion-card-subtitle {
+  font-size: 14px;
+  color: #E74C3C; /* ocre/orangé */
+}
+
+.welcome-message {
+  text-align: center;
+  margin-top: 100px;
+
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #E74C3C;
+    min-height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #E74C3C;
+    display: inline-block;
+    animation: blink-caret 0.75s step-end infinite;
+  }
+
+  p {
+    font-size: 16px;
+    margin-top: 8px;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    color: #666;
+  }
+
+  .animate-slide-in {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #E74C3C;
+  }
+}
+
+.filtre-container {
+  animation: slideFadeIn 0.3s ease-out;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

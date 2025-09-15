@@ -1,0 +1,11 @@
+/* Couleur par défaut des icônes et labels : noir */
+ion-button ion-icon,
+ion-button ion-label {
+  color: black;
+}
+
+/* Couleur rouge quand actif */
+ion-button.active-link ion-icon,
+ion-button.active-link ion-label {
+  color: red !important;
+}

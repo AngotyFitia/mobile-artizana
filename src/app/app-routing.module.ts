@@ -9,7 +9,11 @@ const routes: Routes = [
     children: [
       {
         path: 'profil',
-        loadChildren: () => import('./artisant/profil/profil.module').then(m => m.ProfilPageModule)
+        loadChildren: () => import('./components/profil/profil.module').then(m => m.ProfilPageModule)
+      },
+      {
+        path: 'accueil',
+        loadChildren: () => import('./components/accueil/accueil.module').then(m => m.AccueilPageModule)
       },
       {
         path: '', 
