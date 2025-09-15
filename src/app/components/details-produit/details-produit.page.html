@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Détails du Produit</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="produit">
+  <ion-card>
+    <img *ngIf="produit.photosProduit?.length > 0"
+         [src]="'data:image/jpeg;base64,' + produit.photosProduit[0].photoBase64"
+         alt="Produit" />
+    <ion-card-header>
+      <ion-card-title>{{ produit.intitule }}</ion-card-title>
+      <ion-card-subtitle>Vokarin'i {{ produit.societe.nom }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Vidiny:</strong> {{ produit.prixProduit.prix | number:'1.2-2' }} Ar</p>
+      <p><strong>Description:</strong> {{ produit.description }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

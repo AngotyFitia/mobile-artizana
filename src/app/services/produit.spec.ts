@@ -8,6 +8,10 @@ export interface Societe {
 export interface PhotoProduit {
   photoBase64: string;
 }
+export interface PrixProduit{
+  prix: number;
+  date: Date;
+}
 
 export interface Produit {
   idProduit: number;
@@ -16,4 +20,5 @@ export interface Produit {
   categorie: Categorie;
   societe: Societe;
   photosProduit: PhotoProduit[];
+  prixProduit: PrixProduit;
 }

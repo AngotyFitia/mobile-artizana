@@ -135,14 +135,15 @@ ion-card-header {
 
 ion-card-title {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 300;
   margin-bottom: 4px;
   color: black;
 }
 
 ion-card-subtitle {
   font-size: 14px;
-  color: #E74C3C; /* ocre/orangé */
+  color: black;
+  // color: #E74C3C; /* ocre/orangé */
 }
 
 .welcome-message {
