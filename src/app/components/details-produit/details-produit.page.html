@@ -7,18 +7,51 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="produit">
-  <ion-card>
-    <img *ngIf="produit.photosProduit?.length > 0"
-         [src]="'data:image/jpeg;base64,' + produit.photosProduit[0].photoBase64"
-         alt="Produit" />
+<ion-content fullscreen="true">
+  <ion-card *ngIf="produit">
+    <div class="gallery-container">
+      <img *ngIf="images.length > 0" [src]="'data:image/jpeg;base64,' + images[selectedIndex].photoBase64" alt="Image principale" class="main-image" />
+      <div class="thumbnails-container">
+        <button class="arrow-button" (click)="prevImage()" [disabled]="selectedIndex === 0">‹</button>
+        <div class="thumbnails-scroll">
+          <img *ngFor="let img of images; let i = index" [src]="'data:image/jpeg;base64,' + img.photoBase64" (click)="selectImage(i)" [class.selected]="i === selectedIndex" class="thumbnail" />
+        </div>
+        <button class="arrow-button" (click)="nextImage()" [disabled]="selectedIndex === images.length - 1">›</button>
+      </div>
+    </div>
+
     <ion-card-header>
       <ion-card-title>{{ produit.intitule }}</ion-card-title>
-      <ion-card-subtitle>Vokarin'i {{ produit.societe.nom }}</ion-card-subtitle>
+      <ion-card-subtitle> Vokarin'i {{ produit.societe.nom }} - {{ produit.societe.histoire }}</ion-card-subtitle>
     </ion-card-header>
+
     <ion-card-content>
       <p><strong>Vidiny:</strong> {{ produit.prixProduit.prix | number:'1.2-2' }} Ar</p>
-      <p><strong>Description:</strong> {{ produit.description }}</p>
+      <ul>
+        <strong>Mombamomban'i mpikambana:</strong> 
+        <p>Filohan'ny fikambanana: {{ produit.societe.utilisateur.nom }} {{ produit.societe.utilisateur.prenom }}</p>
+        <p>Lohatenin'ny fikambanana: {{ produit.societe.titre }}</p>
+        <p>Tantaran'ny fikambanana: {{ produit.societe.histoire }}</p>
+      </ul>
+
+      <!-- Formulaire de commande -->
+      <form (ngSubmit)="commanderProduit()">
+        <h1>Hividy entana</h1>
+        <h1>Isan'ny entana misy ao: {{ produit.etatStock.quantiteActuel }}</h1>
+      
+        <ion-item>
+          <ion-label position="floating">Isan'ny entana ho vidiana</ion-label>
+          <ion-input  type="number" min="1" required [(ngModel)]="quantite" name="quantite">
+          </ion-input>
+        </ion-item>
+      
+        <!-- Champs cachés pour idProduit et idSociete -->
+        <input type="hidden" [(ngModel)]="produit.idProduit" name="idProduit">
+        <input type="hidden" [(ngModel)]="produit.societe.idSociete" name="idSociete">
+        <div style="margin-top: 16px; display: flex; justify-content: center;">
+          <ion-button expand="block" type="submit">Hividy</ion-button>
+        </div>
+      </form>
     </ion-card-content>
   </ion-card>
 </ion-content>
