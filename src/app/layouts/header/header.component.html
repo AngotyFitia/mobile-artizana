@@ -3,8 +3,32 @@
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false" style="color: #000;"></ion-menu-button>
     </ion-buttons>
+
     <ion-title class="ion-text-center" style="color: #E74C3C; font-family: 'Poppins', sans-serif;">
       Artizana
     </ion-title>
+
+    <!-- Menu utilisateur -->
+    <ion-buttons slot="end" *ngIf="user">
+      <ion-button fill="clear" style="color: #000;" (click)="openUserPopover($event)">
+        {{ user.nom }}
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<!-- Popover -->
+<ion-popover [isOpen]="isPopoverOpen" [event]="popoverEvent" (didDismiss)="isPopoverOpen = false">
+  <ng-template>
+    <ion-list>
+      <ion-item button (click)="goToProfil()">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        Profil
+      </ion-item>
+      <ion-item button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        Déconnexion
+      </ion-item>
+    </ion-list>
+  </ng-template>
+</ion-popover>

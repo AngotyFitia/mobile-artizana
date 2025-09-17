@@ -28,4 +28,10 @@ export class CommandeService {
       headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
     });
   }
+
+  getFacturesParUtilisateur(id: number): Observable<any> {
+    const url = `http://localhost:2222/api/mobile/liste-facture/${id}`;
+    return this.http.get(url);
+  }
+  
 }

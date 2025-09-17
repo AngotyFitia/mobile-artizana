@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title style="color: #E74C3C; font-weight: 600; font-family: 'Poppins', sans-serif;">
+      Ny Faktiorako
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [style.background]="'#ffffff'">
+
+  <!-- Factures présentes -->
+  <div class="facture-table-container" *ngIf="factures.length > 0; else noFactures">
+    <table class="facture-table">
+      <thead>
+        <tr>
+          <th>Laharana°</th>
+          <th>Mpikambana</th>
+          <th>Daty</th>
+          <th>Totaly (Ar)</th>
+          <th>Sata</th>
+          <th>Hetsika</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let facture of factures">
+          <td>{{ facture.idFacture }}</td>
+          <td>{{ facture.societe.nom }}</td>
+          <td>{{ formatDateMalagasy(facture.date) }}</td>
+          <td>{{ facture.total | number: '1.0-0' }}</td>
+          <td>
+            <ng-container *ngIf="facture.etat === 10; else autreEtat">
+              <ion-badge color="warning">En attente</ion-badge>
+            </ng-container>
+            <ng-template #autreEtat>
+              <ng-container *ngIf="facture.etat === 1; else etatNormal">
+                <ion-button color="danger" (click)="payer(facture)">Handoha</ion-button>
+              </ng-container>
+            </ng-template>
+            <ng-template #etatNormal>
+              {{ facture.etatTexte || 'Non spécifié' }}
+            </ng-template>
+          </td>
+          <td>
+            <ion-button fill="clear" size="small" color="danger">
+              Hijery ireo novidiana
+            </ion-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Aucune facture -->
+  <ng-template #noFactures>
+    <div class="ion-text-center" style="margin-top: 40px;">
+      <ion-icon name="receipt-outline" size="large" color="medium"></ion-icon>
+      <p style="color: #999;">Aucune facture disponible.</p>
+    </div>
+  </ng-template>
+
+</ion-content>

@@ -22,8 +22,12 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/logout`, { withCredentials: true });
+    return this.http.get(`${this.baseUrl}/logout-mobile`, {
+      withCredentials: true,
+      responseType: 'text' // très important si backend retourne une string ou rien
+    });
   }
+  
 
   getCurrentUser(): Observable<any> {
     return this.http.get(`${this.baseUrl}/session`, { withCredentials: true });

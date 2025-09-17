@@ -9,8 +9,6 @@ import { AuthService } from '../../services/auth';
 import { ToastController } from '@ionic/angular'; 
 import { Router } from '@angular/router';
 
-
-
 @Component({
   selector: 'app-details-produit',
   standalone: true,
@@ -93,8 +91,7 @@ export class DetailsProduitPage implements OnInit {
       this.router.navigateByUrl('/home/accueil');
       return;
     }
-  
-  
+
     const data = {
       idSociete: this.produit.societe.idSociete,
       idUtilisateur: this.user.idUtilisateur, 

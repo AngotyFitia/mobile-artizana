@@ -22,7 +22,11 @@ const routes: Routes = [
       {
         path: '', 
         loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-      }
+      },
+      {
+        path: 'facture/:id',
+        loadChildren: () => import('./components/facture/facture.module').then( m => m.FacturePageModule)
+      },
       
     ]
   },
@@ -30,10 +34,12 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },  {
+  },
+  {
     path: 'login',
     loadChildren: () => import('./components/login/login.module').then( m => m.LoginPageModule)
   },
+  
 
 ];
 
