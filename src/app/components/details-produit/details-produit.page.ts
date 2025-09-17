@@ -4,7 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { CommandeService } from '../../services/commande'; 
+import { CommandeService } from '../../services/commande';
+import { AuthService } from '../../services/auth';
+import { ToastController } from '@ionic/angular'; 
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-details-produit',
@@ -19,11 +24,25 @@ export class DetailsProduitPage implements OnInit {
   images: any[] = [];
   selectedIndex = 0;
   quantite: number = 1;
+  user: any;
 
+  async presentToast(message: string, color: 'success' | 'danger' | 'warning' = 'success') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 3000,
+      position: 'bottom',
+      color
+    });
+    await toast.present();
+  }
+  
   constructor(
     private route: ActivatedRoute, 
     private http: HttpClient,
-    private commandeService: CommandeService
+    private commandeService: CommandeService,
+    private authService: AuthService,
+    private toastController: ToastController,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -31,6 +50,14 @@ export class DetailsProduitPage implements OnInit {
     if (this.idProduit) {
       this.chargerProduit(this.idProduit);
     }
+    this.authService.getCurrentUser().subscribe({
+      next: (user) => {
+        this.user = user;
+      },
+      error: () => {
+        this.user = null;
+      }
+    });
   }
 
   chargerProduit(id: string) {
@@ -58,28 +85,43 @@ export class DetailsProduitPage implements OnInit {
 
   commanderProduit() {
     if (!this.produit || this.quantite < 1) {
-      alert('Quantité invalide ou produit indisponible.');
+      this.presentToast('Quantité invalide ou produit indisponible', 'danger');
       return;
     }
-
+    if (!this.user) {
+      this.presentToast('Utilisateur non connecté.', 'danger');
+      this.router.navigateByUrl('/home/accueil');
+      return;
+    }
+  
+  
     const data = {
       idSociete: this.produit.societe.idSociete,
-      idUtilisateur: 3, // à remplacer dynamiquement si besoin
+      idUtilisateur: this.user.idUtilisateur, 
       idProduit: this.produit.idProduit,
       quantite: this.quantite,
       prix: this.produit.prixProduit.prix
     };
-
+  
     this.commandeService.passerCommande(data).subscribe({
       next: (res) => {
-        console.log('Commande réussie ', res);
-        alert('Commande enregistrée avec succès');
+        this.presentToast('Commande enregistrée avec succès', 'success');
         this.quantite = 1;
+        window.location.reload();
       },
       error: (err) => {
-        console.error('Erreur commande', err);
-        alert('Erreur lors de la commande ');
+        let messageErreur = 'Erreur lors de la commande';
+        if (err.error) {
+          if (typeof err.error === 'string') {
+            messageErreur = err.error; 
+          } else if (err.error.message) {
+            messageErreur = err.error.message; 
+          }
+        }
+  
+        this.presentToast(messageErreur, 'danger');
       }
     });
   }
+  
 }

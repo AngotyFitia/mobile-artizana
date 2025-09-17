@@ -1,0 +1,36 @@
+<ion-header class="login-header-bar">
+  <ion-toolbar>
+    <ion-title class="login-header-title">Hiditra amin'ny kaonty!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding login-background">
+
+  <div class="login-box">
+    <div class="login-header">
+      <h1>Tongasoa ato amin'ny Artizana!</h1>
+      <p>Mampidira ireo mombanao hidirana amin'ny pejy!</p>
+    </div>
+
+    <form (submit)="onLogin()" [formGroup]="loginForm" class="login-form">
+      <ion-item class="login-item">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email" required></ion-input>
+      </ion-item>
+
+      <ion-item class="login-item">
+        <ion-label position="floating">Mot de passe</ion-label>
+        <ion-input type="password" formControlName="password" required></ion-input>
+      </ion-item>
+
+      <div class="forgot-password">
+        <a href="#">Mot de passe oublié ?</a>
+      </div>
+
+      <ion-button expand="block" type="submit" class="login-button" [disabled]="loginForm.invalid">
+        Hiditra
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

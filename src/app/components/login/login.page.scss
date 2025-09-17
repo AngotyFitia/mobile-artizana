@@ -1,0 +1,112 @@
+/* login.page.scss */
+/* Style de l'entête (ion-header) */
+
+.login-header-bar {
+    --background: linear-gradient(135deg, #ffdecf 0%, #ffe7db 100%);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid #ffd5b3;
+  }
+  
+  .login-header-title {
+    text-align: center;
+    color: #d35400;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+  }
+  
+/* Fond général de la page */
+ion-content.login-background {
+    --background: linear-gradient(135deg, #fff7f2 0%, #ffe0cc 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  /* Carte de login centrée */
+  .login-box {
+    width: 100%;
+    padding: 40px 30px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    margin: 20px;
+  }
+  
+  /* En-tête */
+  .login-header {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  .login-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #d35400; // orange profond
+    margin-bottom: 8px;
+  }
+  
+  .login-header p {
+    font-size: 14px;
+    color: #777;
+  }
+  
+  /* Formulaire */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-item {
+    margin-bottom: 18px;
+    --background: #fffaf7;
+    border-radius: 10px;
+    border: 1px solid #ffd6b3;
+    padding: 4px;
+  }
+  
+  .login-item ion-label {
+    color: #b75b00;
+  }
+  
+  .login-item ion-input {
+    color: #333;
+  }
+  
+  /* Mot de passe oublié */
+  .forgot-password {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  
+  .forgot-password a {
+    font-size: 13px;
+    color: #e67e22;
+    text-decoration: none;
+  }
+  
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Bouton de connexion */
+  .login-button {
+    --background: #e67e22;
+    --background-hover: #cf711c;
+    --border-radius: 10px;
+    font-size: 16px;
+    padding: 12px 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .login-box {
+      padding: 30px 20px;
+      margin: 10px;
+    }
+  }
+  
